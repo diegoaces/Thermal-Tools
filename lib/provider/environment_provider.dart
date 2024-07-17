@@ -1,4 +1,3 @@
-import 'package:dji_thermal_tools/process.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,31 +5,33 @@ var environmentModel = ChangeNotifierProvider((ref) => EnvironmentModel());
 
 class EnvironmentModel extends ChangeNotifier {
   bool overrideDefaults = false;
-
-  EnvParams envParams = EnvParams(
-    distance: 1.0,
-    humidity: 50.0,
-    emissivity: 0.95,
-    ambient: 20.0,
-    reflection: 20.0,
-  );
+  double distance = 1.0;
+  double humidity = 50.0;
+  double emissivity = 0.95;
+  double ambientTemperature = 20.0;
+  double reflectedTemperature = 20.0;
 
   void reset() {
+    distance = 1.0;
+    humidity = 50.0;
+    emissivity = 0.95;
+    ambientTemperature = 20.0;
+    reflectedTemperature = 20.0;
     notifyListeners();
   }
 
   void setHumidity(double value) {
-    envParams.humidity = value;
+    humidity = value;
     notifyListeners();
   }
 
   void setEmissivity(double value) {
-    envParams.emissivity = value;
+    emissivity = value;
     notifyListeners();
   }
 
   void setAmbientTemperature(double value) {
-    envParams.ambient = value;
+    ambientTemperature = value;
     notifyListeners();
   }
 
@@ -40,12 +41,12 @@ class EnvironmentModel extends ChangeNotifier {
   }
 
   void setDistance(double value) {
-    envParams.distance = value;
+    distance = value;
     notifyListeners();
   }
 
   void setReflectedTemperature(double value) {
-    envParams.reflection = value;
+    reflectedTemperature = value;
     notifyListeners();
   }
 }

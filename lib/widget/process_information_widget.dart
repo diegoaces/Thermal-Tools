@@ -21,7 +21,7 @@ class ProcessInformationWidget extends ConsumerWidget {
           itemCount: ref.watch(processModel).processes.length,
           itemBuilder: (context, index) {
             return Container(
-                color: index.isEven ? Colors.grey[200] : Colors.white,
+                color: index.isEven ? Colors.white : Colors.transparent,
                 child: Text(ref.watch(processModel).processes[index],
                     style: const TextStyle(fontSize: 12)));
           },

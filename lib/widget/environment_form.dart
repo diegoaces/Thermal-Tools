@@ -3,7 +3,6 @@ import 'package:dji_thermal_tools/input_slider/input_slider_form.dart';
 import 'package:dji_thermal_tools/provider/environment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class EnvironmentForm extends ConsumerWidget {
   const EnvironmentForm({
@@ -27,8 +26,8 @@ class EnvironmentForm extends ConsumerWidget {
                 min: 1.0,
                 max: 25.0,
                 decimalPlaces: 0,
-                defaultValue: ref.watch(environmentModel).envParams.distance,
-                leading: Text(AppLocalizations.of(context)!.distance),
+                defaultValue: ref.watch(environmentModel).distance,
+                leading: const Text("Distance (m):"),
               ),
               InputSlider(
                 onChange: (value) {
@@ -37,8 +36,8 @@ class EnvironmentForm extends ConsumerWidget {
                 min: 20.0,
                 max: 100.0,
                 decimalPlaces: 0,
-                defaultValue: ref.watch(environmentModel).envParams.humidity,
-                leading: Text(AppLocalizations.of(context)!.humidity),
+                defaultValue: ref.watch(environmentModel).humidity,
+                leading: const Text("Humidity (%):"),
               ),
               InputSlider(
                 onChange: (value) {
@@ -47,8 +46,8 @@ class EnvironmentForm extends ConsumerWidget {
                 min: 0.10,
                 max: 1.00,
                 decimalPlaces: 2,
-                defaultValue: ref.watch(environmentModel).envParams.emissivity,
-                leading: Text(AppLocalizations.of(context)!.emissivity),
+                defaultValue: ref.watch(environmentModel).emissivity,
+                leading: const Text("Emissivity:"),
               ),
               InputSlider(
                 onChange: (value) {
@@ -57,8 +56,8 @@ class EnvironmentForm extends ConsumerWidget {
                 min: -40.0,
                 max: 80.0,
                 decimalPlaces: 1,
-                defaultValue: ref.watch(environmentModel).envParams.ambient,
-                leading: Text(AppLocalizations.of(context)!.ambientTemperature),
+                defaultValue: ref.watch(environmentModel).ambientTemperature,
+                leading: const Text("Ambient Temperature (°C):"),
               ),
               InputSlider(
                 onChange: (value) {
@@ -67,9 +66,8 @@ class EnvironmentForm extends ConsumerWidget {
                 min: -40.0,
                 max: 500.0,
                 decimalPlaces: 1,
-                defaultValue: ref.watch(environmentModel).envParams.reflection,
-                leading:
-                    Text(AppLocalizations.of(context)!.reflectedTemperature),
+                defaultValue: ref.watch(environmentModel).reflectedTemperature,
+                leading: const Text("Reflected Temperature (°C):"),
               )
             ]));
   }
