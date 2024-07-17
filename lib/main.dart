@@ -1,4 +1,4 @@
-import 'package:dji_thermal_tools/pages/home_page.dart';
+import 'package:dji_thermal_tools/pages/home.dart';
 import 'package:dji_thermal_tools/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -25,8 +25,7 @@ class MyApp extends StatelessWidget {
           supportedLocales: AppLocalizations.supportedLocales,
           debugShowCheckedModeBanner: false,
           theme: theme.themeData,
-          //home: const HomePage(title: 'Thermal Tools by UAV4GEO'),
-          home: const Home(),
+          home: const HomePage(title: 'Thermal Tools by UAV4GEO'),
         );
       },
     );

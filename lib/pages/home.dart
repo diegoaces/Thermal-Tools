@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:desktop_drop/desktop_drop.dart';
 import 'package:dji_thermal_tools/input_slider/input_slider.dart';
 import 'package:dji_thermal_tools/input_slider/input_slider_form.dart';
 import 'package:dji_thermal_tools/tiff_encoder.dart';
@@ -444,11 +445,38 @@ class _HomePageState extends State<HomePage> {
           : Container();
 
       controls = <Widget>[
-        Container(
-          margin: const EdgeInsets.only(bottom: 4.0),
-          child: OutlinedButton(
-            onPressed: () => _selectFolder(context),
-            child: Text(AppLocalizations.of(context)!.selectImageFolder),
+        DropTarget(
+          onDragDone: (details) {
+            if (details.files.isEmpty) return;
+        
+            var files = Directory(details.files.first.path).listSync();
+        
+            if(files.isEmpty) {
+              setState(() {
+                _lastError = "No images found in folder";
+              });
+              return;
+            }
+        
+            setState(() {
+              _selectedFiles.clear();
+        
+              for (var f in files) {
+                if (f.path.toLowerCase().endsWith(".jpg") ||
+                    f.path.toLowerCase().endsWith(".jpeg")) {
+                  _selectedFiles.add(File(f.path));
+                }
+              }
+              _selectedFolder = p.dirname(_selectedFiles[0].path);
+              _lastError = "";
+            });
+          },
+          child: Container(
+            margin: const EdgeInsets.all(1),
+            child: OutlinedButton(
+              onPressed: () => _selectFolder(context),
+              child: Text(AppLocalizations.of(context)!.selectImageFolder),
+            ),
           ),
         ),
         Container(
